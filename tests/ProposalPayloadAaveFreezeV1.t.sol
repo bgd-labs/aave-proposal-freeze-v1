@@ -3,11 +3,11 @@ pragma solidity ^0.8.0;
 
 import {Test} from 'forge-std/Test.sol';
 import 'forge-std/console.sol';
+import {GovHelpers, IAaveGov} from 'aave-helpers/GovHelpers.sol';
 
 import {ProposalPayloadAaveFreezeV1} from '../src/contracts/ProposalPayloadAaveFreezeV1.sol';
 import {ILendingPoolAddressesProvider} from '../src/interfaces/ILendingPoolAddressesProvider.sol';
 import {ILendingPoolCore} from '../src/interfaces/ILendingPoolCore.sol';
-import {GovHelpers, IAaveGov} from './helpers/AaveGovHelpers.sol';
 
 contract ProposalPayloadAaveFreezeV1Test is Test {
   function testProposal() public {
