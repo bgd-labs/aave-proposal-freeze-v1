@@ -8,6 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/bgd-labs/bgd-forge-template.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "BGD labs",
   "license": "MIT",
@@ -18,5 +19,8 @@
   "devDependencies": {
     "prettier": "^2.7.1",
     "prettier-plugin-solidity": "^1.0.0-beta.19"
+  },
+  "dependencies": {
+    "ethers": "^5.6.9"
   }
 }

@@ -10,11 +10,6 @@ import {ILendingPoolCore} from '../src/interfaces/ILendingPoolCore.sol';
 import {GovHelpers, IAaveGov} from './helpers/AaveGovHelpers.sol';
 
 contract ProposalPayloadAaveFreezeV1Test is Test {
-  ILendingPoolAddressesProvider public constant AAVE_V1_ADDRESS_PROVIDER =
-    ILendingPoolAddressesProvider(0x24a42fD28C976A61Df5D00D0599C34c4f90748c8);
-
-  function setUp() public {}
-
   function testProposal() public {
     ProposalPayloadAaveFreezeV1 payload = new ProposalPayloadAaveFreezeV1();
 
