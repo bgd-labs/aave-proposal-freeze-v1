@@ -1,6 +1,6 @@
 # Freeze all reserves on Aave v1 Ethereum
 
-Repository containing the necessary smart contracts to propose freezing all reserves on the Aave v1 Ethereum market.
+Repository containing the necessary smart contracts to propose freezing all reserves on the **Aave v1 Ethereum** and **Aave v1 AMM** market.
 
 One of the tasks in the [Aave <> BGD engagement](https://governance.aave.com/t/aave-bored-ghosts-developing-bgd/7527) is the final closure of the Aave V1 Ethereum, which is a deprecated pool after V2 and the upcoming V3 version.
 Closure in this context means activating the necessary mechanisms to stop the possibility of providing liquidity and borrowing assets. Only keeping withdrawals, repayments, and liquidations active.
