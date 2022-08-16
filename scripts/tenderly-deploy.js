@@ -1,5 +1,7 @@
 /**
  * This script deploys the contract on a tenderly fork and executes it.
+ * To test on the ui you have to create a fork on chainId 1 and setup your metamask accordingly.
+ * The ui will then automatically show the forked state.
  */
 import ethers from "ethers";
 import contract from "../out/ProposalPayloadAaveFreezeV1.sol/ProposalPayloadAaveFreezeV1.json" assert { type: "json" };
@@ -14,6 +16,7 @@ if (!TENDERLY_FORK_URL) throw new Error("you have to set a TENDERLY_FORK_URL");
 
 const provider = new ethers.providers.StaticJsonRpcProvider(TENDERLY_FORK_URL);
 
+// Deploy the payload
 const factory = new ethers.ContractFactory(
   contract.abi,
   contract.bytecode,
@@ -22,6 +25,7 @@ const factory = new ethers.ContractFactory(
 
 const payload = await factory.deploy();
 
+// Create the proposal
 const governance = new ethers.Contract(
   GOV,
   GOV_ARTIFACT.abi,
@@ -42,6 +46,7 @@ await (
 
 const id = (await governance.getProposalsCount()) - 1;
 
+// alter forVotes storage so the proposal passes
 await provider.send("tenderly_setStorageAt", [
   GOV,
   ethers.BigNumber.from(
@@ -54,6 +59,7 @@ await provider.send("tenderly_setStorageAt", [
   ethers.utils.hexZeroPad(ethers.utils.parseEther("5000000").toHexString(), 32),
 ]);
 
+// queue proposal
 const activeProposal = await governance.getProposalById(id);
 await provider.send("evm_increaseBlocks", [
   ethers.BigNumber.from(activeProposal.endBlock)
@@ -64,6 +70,7 @@ await provider.send("evm_increaseBlocks", [
 
 await governance.queue(id);
 
+// execute proposal
 const queuedProposal = await governance.getProposalById(id);
 const timestamp = (await provider.getBlock()).timestamp;
 await provider.send("evm_increaseTime", [
