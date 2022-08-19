@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '../interfaces/ILendingPoolCore.sol';
-import '../interfaces/ILendingPoolConfigurator.sol';
-import '../interfaces/ILendingPoolAddressesProvider.sol';
+import {ILendingPoolCore} from '../interfaces/ILendingPoolCore.sol';
+import {ILendingPoolConfigurator} from '../interfaces/ILendingPoolConfigurator.sol';
+import {ILendingPoolAddressesProvider} from '../interfaces/ILendingPoolAddressesProvider.sol';
 
 /**
  * @title ProposalPayloadAaveFreezeV1
  * @author BGD Labs
- * @notice Aave governance payload to freeze all the reserves on Aave v1 Ethereum
+ * @notice Aave governance payload to freeze all the reserves on Aave v1 Ethereum and v1 AMM
  */
 contract ProposalPayloadAaveFreezeV1 {
   ILendingPoolAddressesProvider public constant AAVE_V1_PROTO_ADDRESS_PROVIDER =

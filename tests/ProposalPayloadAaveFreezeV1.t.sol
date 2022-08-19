@@ -10,6 +10,10 @@ import {ILendingPoolAddressesProvider} from '../src/interfaces/ILendingPoolAddre
 import {ILendingPoolCore} from '../src/interfaces/ILendingPoolCore.sol';
 
 contract ProposalPayloadAaveFreezeV1Test is Test {
+  function setUp() public {
+    vm.createSelectFork(vm.rpcUrl('ethereum'), 15276550);
+  }
+
   function testProposal() public {
     ProposalPayloadAaveFreezeV1 payload = new ProposalPayloadAaveFreezeV1();
 

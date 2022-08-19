@@ -6,4 +6,7 @@ libs = ['lib']
 remappings = [
 ]
 
+[rpc_endpoints]
+ethereum = "${RPC_ETHEREUM}"
+
 # See more config options https://github.com/gakonst/foundry/tree/master/config
