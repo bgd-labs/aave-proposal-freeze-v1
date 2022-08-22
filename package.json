@@ -8,6 +8,7 @@
     "type": "git",
     "url": "git+https://github.com/bgd-labs/bgd-forge-template.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "BGD labs",
   "license": "MIT",

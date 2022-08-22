@@ -9,4 +9,6 @@ on:
 
 jobs:
   test:
-    uses: bgd-labs/github-workflows/.github/workflows/foundry-test.yml@main
+    uses: bgd-labs/github-workflows/.github/workflows/foundry-test.yml@d9aeed6c047dcb364fb2134d788691ea825ca9ea
+    with:
+      testCommand: make test

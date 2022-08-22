@@ -2,21 +2,19 @@
 pragma solidity ^0.8.0;
 
 import {Test} from 'forge-std/Test.sol';
-import "forge-std/console.sol";
+import 'forge-std/console.sol';
+import {GovHelpers, IAaveGov} from 'aave-helpers/GovHelpers.sol';
 
 import {ProposalPayloadAaveFreezeV1} from '../src/contracts/ProposalPayloadAaveFreezeV1.sol';
 import {ILendingPoolAddressesProvider} from '../src/interfaces/ILendingPoolAddressesProvider.sol';
 import {ILendingPoolCore} from '../src/interfaces/ILendingPoolCore.sol';
-import {GovHelpers, IAaveGov} from './helpers/AaveGovHelpers.sol';
 
 contract ProposalPayloadAaveFreezeV1Test is Test {
-  ILendingPoolAddressesProvider public constant AAVE_V1_ADDRESS_PROVIDER = 
-    ILendingPoolAddressesProvider(0x24a42fD28C976A61Df5D00D0599C34c4f90748c8);
-
-  function setUp() public {}
+  function setUp() public {
+    vm.createSelectFork(vm.rpcUrl('ethereum'), 15276550);
+  }
 
   function testProposal() public {
-
     ProposalPayloadAaveFreezeV1 payload = new ProposalPayloadAaveFreezeV1();
 
     address[] memory targets = new address[](1);
@@ -45,16 +43,18 @@ contract ProposalPayloadAaveFreezeV1Test is Test {
 
     GovHelpers.passVoteAndExecute(vm, proposalId);
 
-    _validateFreeze();
+    _validateFreeze(payload.AAVE_V1_PROTO_ADDRESS_PROVIDER());
+    _validateFreeze(payload.AAVE_V1_UNI_ADDRESS_PROVIDER());
   }
 
-  function _validateFreeze() internal {
-    ILendingPoolCore lendingPoolCore = 
-      ILendingPoolCore(AAVE_V1_ADDRESS_PROVIDER.getLendingPoolCore());
+  function _validateFreeze(ILendingPoolAddressesProvider provider) internal {
+    ILendingPoolCore lendingPoolCore = ILendingPoolCore(
+      provider.getLendingPoolCore()
+    );
 
     address[] memory reserves = lendingPoolCore.getReserves();
 
-    for(uint256 i=0; i<reserves.length; i++) {
+    for (uint256 i = 0; i < reserves.length; i++) {
       assertTrue(lendingPoolCore.getReserveIsFreezed(reserves[i]));
     }
   }
