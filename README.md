@@ -21,6 +21,10 @@ Accepting this proposal assumes that the proper communication has been done with
 
 - Validates that after proposal is accepted, all reserves are frozen in the `LendingPoolCore` contract
 
+### Deployed payload
+
+- [0x6f02253c80A041a773efa35c98D4bc14A0f6EF9e](https://etherscan.io/address/0x6f02253c80a041a773efa35c98d4bc14a0f6ef9e#code)
+
 ## Setup
 
 ### Install
