@@ -16,7 +16,7 @@ git-diff :
 	@printf '%s\n%s\n%s\n' "\`\`\`diff" "$$(git diff --no-index --diff-algorithm=patience --ignore-space-at-eol ${before} ${after})" "\`\`\`" > diffs/${out}.md
 
 # Deploy payloads
-deploy-payload :; forge script scripts/DeployPayload.s.sol:DeployL1Proposal --rpc-url ethereum --broadcast --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv
+deploy-payload :; forge script scripts/DeployPayload.s.sol:DeployL1Proposal --rpc-url mainnet --broadcast --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv
 
 # Create proposal
-create-proposal :; forge script scripts/CreateProposal.s.sol:CreateFreezeProposal --rpc-url ethereum --broadcast --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv
+create-proposal :; forge script scripts/CreateProposal.s.sol:CreateFreezeProposal --rpc-url mainnet --broadcast --ledger --mnemonic-indexes ${MNEMONIC_INDEX} --sender ${LEDGER_SENDER} --verify -vvvv
